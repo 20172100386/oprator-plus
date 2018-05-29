@@ -33,18 +33,81 @@ CFeet CFeet::operator -(CFeet &objf)
 {
 	CFeet temp;
 	int t;
-	if (feet < 0)
+	if (feet < 0&&objf.feet>0)
 	{
 		t = inches + objf.inches;
 	}
-	else if (inches > objf.inches)
+	else if (feet < 0 && objf.feet < 0)
+	{
+	    if (inches > objf.inches)
+	    {
+		    t = inches - objf.inches;
+	    }
+	     else 
+	    {
+		    t = objf.inches - inches;
+	    }
+
+	}
+	else if (feet > 0 && objf.feet > 0)
+	{
+		if (inches > objf.inches)
+		{
+			t = inches - objf.inches;
+		}
+		else
+		{
+			t = objf.inches - inches;
+		}
+	}
+	else if (feet >0 && objf.feet < 0)
+	{
+		t = inches + objf.inches;
+	}
+	else if (feet == 0 && objf.feet != 0)
+	{
+		if (objf.feet > 0)
+		{
+			if (inches > objf.inches)
+			{
+				t = inches - objf.inches;
+			}
+			else
+			{
+				t = objf.inches - inches;
+			}
+		}
+		else
+		{
+			t = inches + objf.inches;
+		}
+	}
+	else if (feet != 0 && objf.feet == 0)
+	{
+		/*if (feet > 0)
+		{*/
+			if (inches > objf.inches)
+			{
+				t = inches - objf.inches;
+			}
+			else
+			{
+				t = inches+12 - objf.inches;
+			}
+		/*}
+		else
+		{
+
+		}*/
+	}
+	/*else if (inches > objf.inches)
 	{
 		t = inches - objf.inches;
 	}
 	else if(inches<objf.inches)
 	{
 		t = objf.inches - inches;
-	}
+	}*/
 	
 	temp.setvalue(feet - objf.feet, t);
 	return temp;
@@ -54,9 +117,9 @@ CFeet CFeet::operator -(CFeet &objf)
 int main()
 {
 	CFeet A, B, C;
-	A.setvalue(1, 3);
-	B.setvalue(2, 2);
-	C = A - B;
+	A.setvalue(1,1);
+	B.setvalue(0,3);
+	C = A - B; 
 	C.display();
 	return 0;
 }
